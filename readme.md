@@ -8,10 +8,10 @@ For custom users! Professional audio recorder.
 http://irsoftware.net/?p=100
 
 # Changelog
--NEW DESIGN 
--FASTER 
--MORE STABLE 
--LOT OF GESTURE
+- NEW DESIGN 
+- FASTER 
+- MORE STABLE 
+- LOT OF GESTURE
 
 This is an amazing, gorgeous looking voice recorder app with many features including VU Meter, and more.
 
