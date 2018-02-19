@@ -15,7 +15,11 @@ http://irsoftware.net/?p=100
 
 This is an amazing, gorgeous looking voice recorder app with many features including VU Meter, and more.
 
-v.0.8.3 
+v.0.8.4 [Feb-2018]
+- Code cleanup
+- Rebuild old source code
+
+v.0.8.3 [Aug-2013]
 --------
 - Intelligent power saving features 
 - Send recorded file via any sharing service 

@@ -1,0 +1,10 @@
+dictarec (0.8.4) unstable; urgency=low
+  * rebuild package
+
+ -- Gergely Boross <sk8geri@gmail.com>  Mon, 19 Feb 2018 18:20:25 +0100
+
+dictarec (0.0.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Gergely Boross <sk8geri@gmail.com>  Mon, 19 Feb 2018 13:48:46 +0100
