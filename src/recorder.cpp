@@ -26,7 +26,6 @@
 #include <QDebug>
 #include <QtCore/qdir.h>
 #include <QtGui/qfiledialog.h>
-#include <QFeedbackHapticsEffect>
 
 #include <qaudiocapturesource.h>
 #include <qmediarecorder.h>
@@ -36,7 +35,7 @@
 using namespace QtMobility;
 
 AudioInfo::AudioInfo( QObject *parent)
-    :QIODevice(parent)
+    : QIODevice(parent)
 {
     m_maxAmplitude = 32767;
     m_level = 0;
@@ -159,6 +158,15 @@ Recorder::Recorder()
     m_audiosource = new QAudioCaptureSource();
     m_capture = new QMediaRecorder(m_audiosource);
     m_audiosettings = new QAudioEncoderSettings();
+
+    m_rumble = new QFeedbackHapticsEffect();
+    m_rumble->setAttackIntensity(0.0);
+    m_rumble->setAttackTime(100);
+    m_rumble->setIntensity(0.8);
+    m_rumble->setDuration(100);
+    m_rumble->setFadeTime(100);
+    m_rumble->setFadeIntensity(0.+0);
+    connect(m_rumble, SIGNAL(stateChanged()), this, SLOT(effectStateChanged()));
 }
 
 Recorder::~Recorder()
@@ -184,7 +192,7 @@ void Recorder::togglePause()
     if (m_capture->state() != QMediaRecorder::PausedState) {
         m_recording = false;
         m_capture->pause();
-    } else{
+    } else {
         m_recording = true;
         m_capture->record();
     }
@@ -233,7 +241,7 @@ QUrl Recorder::generateAudioFilePath()
             location = location_tmp;
             inc += 1;
             qDebug() << "inc: " << inc ;
-        }else exist = false;
+        } else exist = false;
     }
 
     qDebug() << "------------------FINISH_SELECT_FLE_NAME--------------------------------";
@@ -259,17 +267,7 @@ void Recorder::effectStateChanged()
 void Recorder::vibrate()
 {
     qDebug() << "most rezegni akarok";
-
-    QFeedbackHapticsEffect *rumble = new QFeedbackHapticsEffect();
-    rumble->setAttackIntensity(0.0);
-    rumble->setAttackTime(100);
-    rumble->setIntensity(0.8);
-    rumble->setDuration(100);
-    rumble->setFadeTime(100);
-    rumble->setFadeIntensity(0.+0);
-
-    rumble->start();
-    connect(rumble, SIGNAL(stateChanged()), this, SLOT(effectStateChanged()));
+    m_rumble->start();
 }
 
 void Recorder::recStart()
@@ -367,7 +365,7 @@ void Recorder::renameFile(QString old_name, QString new_name)
 
 void Recorder::powerSave(bool iSuspend)
 {
-    m_powerSave=iSuspend;
+    m_powerSave = iSuspend;
 
     if(m_powerSave) {
         qDebug() << "PowerSave-ON";

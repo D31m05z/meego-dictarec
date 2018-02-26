@@ -35,7 +35,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     QScopedPointer<QApplication> app(createApplication(argc, argv));
 
-    QSplashScreen *pSplash = new QSplashScreen();
+    QSplashScreen* pSplash = new QSplashScreen();
     pSplash->setPixmap(QPixmap(":/images/splash.png"));
     pSplash->show();
 
@@ -44,11 +44,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QDeclarativeView viewer;
 
-    Recorder *DictaRec = new Recorder();
-    viewer.rootContext()->setContextProperty("myRecorder", DictaRec);
+    Recorder service;
+    viewer.rootContext()->setContextProperty("myRecorder", &service);
     viewer.setSource(QUrl("qrc:/qml/main.qml"));
     viewer.showFullScreen();
-    DictaRec->inicialize(dynamic_cast<QObject*>(viewer.rootObject()));
+
+    service.inicialize(dynamic_cast<QObject*>(viewer.rootObject()));
 
     pSplash->close();
     delete pSplash;

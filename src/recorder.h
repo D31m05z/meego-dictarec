@@ -30,6 +30,7 @@
 #include <QtDeclarative>
 #include <QtCore/qurl.h>
 #include <QtGui/qmainwindow.h>
+#include <QFeedbackHapticsEffect>
 #include <qmediarecorder.h>
 #include <QRadioTuner>
 #include <qaudioinput.h>
@@ -106,6 +107,7 @@ private:
     QIODevice *m_input;
 
     QObject* m_root;
+    QtMobility::QFeedbackHapticsEffect* m_rumble;
 
     int m_encoding;
     QString m_codec;
